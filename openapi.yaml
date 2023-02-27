@@ -1,0 +1,18 @@
+swagger: "2.0"
+info:
+  title: Ping India Test
+  version: 1.0.0
+host: keysafe.web.app
+basePath: /v1
+schemes:
+  - https
+paths:
+  /pingIndia:
+    get:
+      operationId: pingIndia
+      x-google-backend:
+        address: https://asia-south1-apikeysafe.cloudfunctions.net/ping-india
+      summary: ping test.
+      responses:
+        200:
+          description: OK

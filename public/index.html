@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hey!</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="w-screen h-screen overflow-hidden flex flex-row items-center justify-center"
+  >
+    <h1 class="text-4xl font-bold">
+      The time right now is
+      <span id="time" class="text-red-500 underline">6:39 PM</span>.
+    </h1>
+    <button onclick="fetchTime()">Fetch Server Time.</button>
+
+    <script>
+      let cycle,
+        resp = {},
+        fetchTime = () =>
+          fetch("https://polite-ways-hope-106-215-28-192.loca.lt/ping", {
+            // headers: {
+            //   Authorization:
+            //     "Basic emFtYXpvbl9mYzlmYmQzZWE2YjRlYTgwYWZjNmNkMWRhNDFmZjVkN2U5YWFlNGQ2N2Q2NGJhNWIxYjZiNDQxNWJkYjhlMDlkY2MxMjc2MzQzMDU4YzExNmMzOGIxYTE0MWZlNWFjZDA4MDM4N2MzZDNlMDVhYjg5ZjVjNTVhNDg1ZjBlM2JkMjllZTFmZjJlZDA2NGRjYmIzOGExMmNlMjViMzQ0NjZhYTgyZjJjMzJlMzdlZjVkZjcyMzA5NTk2OmU1YmJmM2FkYzIyYzRiZmNkMmU4M2QwODlmNjNkZmNh",
+            // },
+            mode: "no-cors",
+          })
+            // .then((e) => {
+            //   e.headers.forEach(
+            //     (value, key) => (resp = { ...resp, [key]: value })
+            //   );
+            //   console.log(resp);
+            //   return e;
+            // })
+            // .then((e) => e.text())
+            .then(
+              (e) =>
+                (document.querySelector("#time").innerText = `${moment().format(
+                  "MMMM Do YYYY, h:mm:ss.SSS a"
+                )}`)
+            )
+            .catch(console.err);
+      // fetchTime = () =>
+      //   fetch("http://localhost:3434/api/time", {
+      //     headers: {
+      //       Authorization:
+      //         "Basic emFtYXpvbl9mYzlmYmQzZWE2YjRlYTgwYWZjNmNkMWRhNDFmZjVkN2U5YWFlNGQ2N2Q2NGJhNWIxYjZiNDQxNWJkYjhlMDlkY2MxMjc2MzQzMDU4YzExNmMzOGIxYTE0MWZlNWFjZDA4MDM4N2MzZDNlMDVhYjg5ZjVjNTVhNDg1ZjBlM2JkMjllZTFmZjJlZDA2NGRjYmIzOGExMmNlMjViMzQ0NjZhYTgyZjJjMzJlMzdlZjVkZjcyMzA5NTk2OmU1YmJmM2FkYzIyYzRiZmNkMmU4M2QwODlmNjNkZmNh",
+      //     },
+      //     mode: "same-origin",
+      //   })
+      //     .then((e) => {
+      //       e.headers.forEach(
+      //         (value, key) => (resp = { ...resp, [key]: value })
+      //       );
+      //       console.log(resp);
+      //       return e;
+      //     })
+      //     .then((e) => e.text())
+      //     .then((e) => (document.querySelector("#time").innerText = `${e}`))
+      //     .catch(console.err);
+
+      // window.onload = (e) => {
+      //   cycle = setInterval(fetchTime, 10000);
+      // };
+
+      // window.onclose = (e) => {
+      //   clearInterval(cycle);
+      // };
+    </script>
+  </body>
+</html>
